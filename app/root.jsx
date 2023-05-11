@@ -1,8 +1,10 @@
 import {
-    Meta
+    Meta,
+    Links
 } from "@remix-run/react"
+import styles from "./styles/index.css"
 
-//Esto es el doctype de HTML, asi se importa
+//Esto es el doctype de HTML, asi se importa y se utiliza mencionandolo como componente en el document
 export function meta() {
     return (
         [
@@ -10,6 +12,15 @@ export function meta() {
             { title: "GuitarLA - Remix" },
             { name: "viewport", content: "width=device-width,initial-scale=1" }
         ]
+    )
+}
+
+export function links(){
+    return(
+        {
+            rel: "stylesheet",
+            href: styles
+        }
     )
 }
 
@@ -27,6 +38,7 @@ function Document({ children }) {
         <html lang="es">
             <head>
                 <Meta />
+                <Links/>
             </head>
             <body>
                 {children}
