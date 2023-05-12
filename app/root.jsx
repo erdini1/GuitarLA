@@ -1,6 +1,7 @@
 import {
     Meta,
-    Links
+    Links,
+    Outlet
 } from "@remix-run/react"
 import styles from "./styles/index.css"
 
@@ -15,20 +16,39 @@ export function meta() {
     )
 }
 
-export function links(){
-    return(
+//Tener en cuenta que el orden importa.
+// los tres ultimos links son para las fuentes de google fonts
+export function links() {
+    return [
+        {
+            rel: "stylesheet",
+            href: "https://necolas.github.io/normalize.css/8.0.1/normalize.css"
+        },
+        {
+            rel: "preconnect",
+            href: "https://fonts.googleapis.com"
+        },
+        {
+            rel: "preconnect",
+            href: "https://fonts.gstatic.com",
+            crossOrigin: "true"
+        },
+        {
+            rel: "stylesheet",
+            href: "https://fonts.googleapis.com/css2?family=Outfit:wght@400;700;900&display=swap"
+        },
         {
             rel: "stylesheet",
             href: styles
         }
-    )
+    ]
 }
 
 // En primer lugar hay que exportar la función App
 export default function App() {
     return (
         <Document>
-            <h1>Desde App</h1>
+            <Outlet/>
         </Document>
     )
 }
@@ -38,7 +58,7 @@ function Document({ children }) {
         <html lang="es">
             <head>
                 <Meta />
-                <Links/>
+                <Links />
             </head>
             <body>
                 {children}
