@@ -7,6 +7,7 @@ import {
 } from "@remix-run/react"
 import styles from "~/styles/index.css"
 import Header from "~/components/header"
+import Footer from "~/components/footer"
 
 //Esto es el doctype de HTML, asi se importa y se utiliza mencionandolo como componente en el document
 export function meta() {
@@ -66,6 +67,7 @@ function Document({ children }) {
             <body>
                 <Header />
                 {children}
+                <Footer/>
                 {/* Debo poner scripts para que me tome las configuracion de react */}
                 <Scripts />
                 {/* LiveReload es para que se actualice automaticamnete cuando guardo */}
