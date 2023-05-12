@@ -1,11 +1,13 @@
 import { Link } from "@remix-run/react"
+import logo from "../../public/img/logo.svg"
+
 const Header = () => {
     return (
         <header className="header">
             <div className="contenedor barra">
-                <div className="logo">
-
-                </div>
+                <Link to={"/"}>
+                    <img  className="logo" src={logo} alt="Imagen logo" />
+                </Link>
                 <nav className="navegacion">
                     {/* Se usa link para navegar de una manera mas rapida que con "a" */}
                     <Link
