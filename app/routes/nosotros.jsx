@@ -1,4 +1,31 @@
 import imagen from "../../public/img/nosotros.jpg"
+import styles from "~/styles/nosotros.css"
+
+export function meta() {
+  return (
+    [
+      { title: "GuitarLa - Sobre nosotros" },
+      { description: "Venta de Guitarras, blog de mucica" }
+    ]
+  )
+}
+
+
+// De esta forma agrego estilos especificos para esta pagina, en el caso en que la pagina quede en desuso puedo eliminar los stylos sin problemas
+export function links() {
+  return [
+    {
+      rel: "stylesheet",
+      href: styles
+    },
+    { /* Esto es para elementos que quiero que cargen rapido, imagenes pesadas mas que nada */
+      rel: "preload",
+      href: imagen,
+      as: "image"
+    }
+  ]
+}
+
 function Nosotros() {
   return (
     <main className="contenedor nosotros">
@@ -12,7 +39,7 @@ function Nosotros() {
             Integer eget orci egestas, interdum quam non, convallis mauris. Morbi interdum dignissim nibh, quis pretium leo rhoncus non. Donec ullamcorper arcu ligula, vitae malesuada erat commodo id. Donec vitae orci a augue semper mollis. Vestibulum sollicitudin consectetur rutrum. Duis quis laoreet velit. Sed sollicitudin vehicula neque vitae tempus. Maecenas odio ipsum, egestas vitae volutpat sit amet, vehicula ut massa.
           </p>
           <p>
-            Pellentesque et felis sed urna interdum tincidunt ac at erat. Vestibulum a libero ac magna hendrerit laoreet sit amet sed erat. Morbi sit amet iaculis tellus. Maecenas commodo orci erat, sit amet finibus lectus vulputate non. Integer pretium quis ex ut scelerisque. Duis felis nulla, iaculis non sem et, congue vehicula velit. Aliquam aliquet finibus nisi et aliquam. Sed id blandit ligula, et lacinia ligula. Phasellus molestie nec libero ut interdum. Vivamus pellentesque viverra lorem, sed finibus velit tempus sed. Cras tellus nunc, pretium in porttitor a, faucibus sit amet eros. Sed dapibus faucibus lacus sit amet fringilla. Donec efficitur tortor vel venenatis euismod. Nam maximus, odio at blandit bibendum, dolor nisi hendrerit lorem, vitae mollis metus orci in nunc.
+            Pellentesque et felis sed urna interdum tincidunt ac at erat. Vestibulum a libero ac magna hendrerit laoreet sit amet sed erat. Morbi sit amet iaculis tellus. Maecenas commodo orci erat, sit amet finibus lectus vulputate non. Integer pretium quis ex ut scelerisque. Duis felis nulla, iaculis non sem et, congue vehicula velit. Aliquam aliquet finibus nisi et aliquam.
           </p>
         </div>
       </div>
