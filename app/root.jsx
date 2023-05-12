@@ -1,9 +1,12 @@
 import {
     Meta,
     Links,
-    Outlet
+    Outlet,
+    Scripts,
+    LiveReload
 } from "@remix-run/react"
-import styles from "./styles/index.css"
+import styles from "~/styles/index.css"
+import Header from "~/components/header"
 
 //Esto es el doctype de HTML, asi se importa y se utiliza mencionandolo como componente en el document
 export function meta() {
@@ -48,7 +51,7 @@ export function links() {
 export default function App() {
     return (
         <Document>
-            <Outlet/>
+            <Outlet />
         </Document>
     )
 }
@@ -61,7 +64,12 @@ function Document({ children }) {
                 <Links />
             </head>
             <body>
+                <Header />
                 {children}
+                {/* Debo poner scripts para que me tome las configuracion de react */}
+                <Scripts />
+                {/* LiveReload es para que se actualice automaticamnete cuando guardo */}
+                <LiveReload/>
             </body>
         </html>
     )
