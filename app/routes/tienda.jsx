@@ -1,7 +1,23 @@
 import { useLoaderData } from "@remix-run/react"
 import { getGuitarras } from "~/models/guitarras.server"
 import Guitarra from "~/components/guitarra"
+import styles from "~/styles/guitarras.css"
 
+export function meta() {
+  return [
+    { title: "GuitarLA - Tienda" },
+    { decription: "GuitarLA - Nuestra colección de Guitarras" }
+  ]
+}
+
+export function links() {
+  return [
+    {
+      rel: "stylesheet",
+      href: styles
+    }
+  ]
+}
 
 //Desde el momento en que exporto el loader ya se manda a llamar automatico. ya sabe lo que tiene que hacer
 // loader es lo que se utiliza cuando el componente carga
