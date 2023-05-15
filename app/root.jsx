@@ -110,4 +110,3 @@ export function ErrorBoundary() {
     )
 }
 
-// Ver porque no me funciona el error, no me muestra el console.log de data por lo que no puedo hacer el template string de meta, seguir viendo que puede ser. no hice commit
