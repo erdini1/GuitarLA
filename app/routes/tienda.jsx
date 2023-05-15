@@ -34,7 +34,7 @@ const Tienda = () => {
 
   return (
     <main className="contenedor">
-      <h2 className="heading">Nuestra Collección</h2>
+      <h2 className="heading">Nuestra Colección</h2>
 
       {guitarras?.length && (
         <div className="guitarras-grid">

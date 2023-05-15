@@ -3,7 +3,10 @@ import {
     Links,
     Outlet,
     Scripts,
-    LiveReload
+    LiveReload,
+    useRouteError,
+    isRouteErrorResponse,
+    Link
 } from "@remix-run/react"
 import styles from "~/styles/index.css"
 import Header from "~/components/header"
@@ -67,12 +70,44 @@ function Document({ children }) {
             <body>
                 <Header />
                 {children}
-                <Footer/>
+                <Footer />
                 {/* Debo poner scripts para que me tome las configuracion de react */}
                 <Scripts />
                 {/* LiveReload es para que se actualice automaticamnete cuando guardo */}
-                <LiveReload/>
+                <LiveReload />
             </body>
         </html>
     )
 }
+
+/** Manejo de errores, No es la misma del video, esta es la V.2 **/
+export function ErrorBoundary() {
+    const error = useRouteError()
+
+    if (isRouteErrorResponse(error)) {
+        return (
+            <Document>
+                <p className="error">{error.status} {error.statusText}</p>
+                <Link
+                    className="error-enlace"
+                    to="/"
+                >
+                    Talvez quieras volver a la página Principal
+                </Link>
+            </Document>
+        )
+    }
+    return (
+        <Document>
+            <p className="error">{error.status} {error.statusText}</p>
+            <Link
+                className="error-enlace"
+                to="/"
+            >
+                Talvez quieras volver a la página Principal
+            </Link>
+        </Document>
+    )
+}
+
+// Ver porque no me funciona el error, no me muestra el console.log de data por lo que no puedo hacer el template string de meta, seguir viendo que puede ser. no hice commit
