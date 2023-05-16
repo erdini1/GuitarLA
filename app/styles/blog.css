@@ -13,9 +13,6 @@
 		grid-template-columns: repeat(3, 1fr);
 	}
 }
-.post {
-    
-}
 .post .contenido {
 	padding: 1.5rem;
 }
