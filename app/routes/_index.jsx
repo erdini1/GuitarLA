@@ -11,7 +11,8 @@ import stylesPosts from "~/styles/blog.css"
 
 export function meta() {
   return [
-
+    {title: "GuitarLa - Inicio"},
+    {description: "GuitarLA - Tienda de guitarras, blog de musica, cursos"}
   ]
 }
 export function links() {
