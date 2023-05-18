@@ -1,8 +1,9 @@
-import { useLoaderData } from "@remix-run/react"
-import ListadoPosts from "~/components/listado-posts"
-import { getPosts } from "~/models/posts.server"
+// Al utulizar nested routes este archivo de blog ahora funiona como LAYOUT
+
+import { Outlet } from "@remix-run/react"
 import styles from "~/styles/blog.css"
 
+// los links si quedan porque se van a aplizar a blog-index y a blog-url
 export function links() {
   return [
     {
@@ -12,27 +13,10 @@ export function links() {
   ]
 }
 
-export function meta() {
-  return [
-    { title: "GuitarLA - Blog" },
-    { description: "GuitarLa - Nuestros Posts" }
-  ]
-}
-
-export async function loader() {
-  const posts = await getPosts()
-  return posts?.data
-}
-
 const Blog = () => {
-
-  const posts = useLoaderData()
-
   return (
     <main className="contenedor">
-      <ListadoPosts
-        posts={posts}
-      />
+      <Outlet />
     </main>
   )
 }
