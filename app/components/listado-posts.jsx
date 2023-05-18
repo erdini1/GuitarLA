@@ -5,7 +5,7 @@ const ListadoPosts = ({ posts }) => {
         <>
             <h2 className="heading">Blog</h2>
             <div className="blog">
-                {posts.map(post => (
+                {posts?.map(post => (
                     <Post
                         key={post.id}
                         post={post.attributes}
