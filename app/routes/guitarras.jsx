@@ -1,4 +1,4 @@
-import { Outlet } from "@remix-run/react"
+import { Outlet, useOutletContext } from "@remix-run/react"
 import styles from "~/styles/guitarras.css"
 
 export function links() {
@@ -14,7 +14,9 @@ const Tienda = () => {
   return (
     <main className="contenedor">
       {/* Este outlet inyecta lo que esta en guitarras._index.jsx, por lo que aca no necesitariamos utilizar los loaders y demas */}
-      <Outlet/>
+      <Outlet
+        context={useOutletContext()}
+      />
     </main>
   )
 }

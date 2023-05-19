@@ -1,3 +1,4 @@
+import { useState } from "react"
 import {
     Meta,
     Links,
@@ -53,9 +54,21 @@ export function links() {
 
 // En primer lugar hay que exportar la función App
 export default function App() {
+
+    const [carrito, setCarrito] = useState([])
+
+    const agregarCarrito = guitarra => {
+        setCarrito([...carrito, guitarra])
+    }
+
     return (
         <Document>
-            <Outlet />
+            <Outlet 
+            // Este es el context para que la info este global, siempre se pasa un objeto, se puede pasar cualquier información
+                context={{
+                    agregarCarrito
+                }}
+            />
         </Document>
     )
 }
