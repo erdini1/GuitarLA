@@ -1,3 +1,4 @@
+import { useState } from "react"
 import { useLoaderData } from "@remix-run/react"
 import { getGuitarra } from "~/models/guitarras.server"
 
@@ -26,8 +27,13 @@ export function meta({ data }) {
 
 const Guitarra = () => {
 
+  // no se pueden usar state en las funciones de arriba
+  const [cantidad, setCantidad] = useState(0)
+
   const guitarra = useLoaderData()
   const { nombre, descripcion, imagen, precio } = guitarra.data[0].attributes
+
+
 
   return (
     <div className="guitarra">
@@ -41,7 +47,11 @@ const Guitarra = () => {
         <form className="formulario">
           <label htmlFor="">Cantidad</label>
 
-          <select name="" id="">
+          <select
+          // de esta forma hago que cambie el state de cantidad, cuando cambie
+            onChange={e => setCantidad(+e.target.value)}
+            id="cantidad"
+          >
             <option value="">-- Seleccione --</option>
             <option value="1">1</option>
             <option value="2">2</option>
