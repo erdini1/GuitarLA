@@ -83,7 +83,8 @@ export default function App() {
             <Outlet 
             // Este es el context para que la info este global, siempre se pasa un objeto, se puede pasar cualquier información
                 context={{
-                    agregarCarrito
+                    agregarCarrito,
+                    carrito
                 }}
             />
         </Document>
