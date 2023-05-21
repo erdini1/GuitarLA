@@ -78,13 +78,25 @@ export default function App() {
         }
     }
 
+    const actualizarCantidad = guitarra => {
+        const carritoActualizado = carrito.map(guitarraState => {
+            if(guitarraState.id === guitarra.id){
+                guitarraState.cantidad = guitarra.cantidad
+            }
+            return guitarraState
+        })
+        setCarrito(carritoActualizado)
+    }
+
+
     return (
         <Document>
             <Outlet 
             // Este es el context para que la info este global, siempre se pasa un objeto, se puede pasar cualquier información
                 context={{
                     agregarCarrito,
-                    carrito
+                    carrito,
+                    actualizarCantidad
                 }}
             />
         </Document>
