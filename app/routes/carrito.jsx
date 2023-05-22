@@ -1,5 +1,7 @@
+import { useState, useEffect } from "react"
 import { useOutletContext } from "@remix-run/react"
 import styles from "~/styles/carrito.css"
+import Guitarra from "./guitarras.$guitarraUrl"
 
 export function links() {
   return [
@@ -19,7 +21,22 @@ export function meta() {
 
 const Carrito = () => {
 
+  const [total, setTotal] = useState(0)
   const { carrito, actualizarCantidad } = useOutletContext()
+
+  
+  useEffect(() => {
+    let totalPagar = 0
+    carrito.map(guitarraPagar => {
+      totalPagar += (guitarraPagar.precio * guitarraPagar.cantidad)
+    })
+    setTotal(totalPagar)
+
+    //Otra forma de hacerlo con un metodo
+    // const calculoTotal = carrito.reduce( (total, producto) => total + (producto.cantidad * producto.precio), 0 )
+    // setTotal(calculoTotal)
+
+  }, [carrito])
 
   return (
     <main className="contenedor">
@@ -29,7 +46,7 @@ const Carrito = () => {
         <div className="carrito">
           <h2>Articulos</h2>
 
-          {carrito.length === 0 ? "Carrito Vacio" : (
+          {carrito.length === 0 ? "Empieza agregando productos" : (
             carrito.map(producto => (
               <div key={producto.id} className="producto">
                 <div>
@@ -64,7 +81,7 @@ const Carrito = () => {
 
         <aside className="resumen">
           <h3>Resumen del pedido</h3>
-          <p>Total a pagar: $</p>
+          <p>Total a pagar: ${total}</p>
         </aside>
       </div>
 
