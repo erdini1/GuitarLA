@@ -22,9 +22,9 @@ export function meta() {
 const Carrito = () => {
 
   const [total, setTotal] = useState(0)
-  const { carrito, actualizarCantidad } = useOutletContext()
+  const { carrito, actualizarCantidad, eliminarGuitarra } = useOutletContext()
 
-  
+
   useEffect(() => {
     let totalPagar = 0
     carrito.map(guitarraPagar => {
@@ -73,6 +73,13 @@ const Carrito = () => {
                   <p className="precio">$ <span>{producto.precio}</span></p>
                   <p className="subtotal">Subtotal: $ <span>{(producto.precio * producto.cantidad)}</span></p>
                 </div>
+
+                <button
+                  type="button"
+                  className="btn_eliminar"
+                  onClick={() => eliminarGuitarra(producto.id)}
+                >X</button>
+
               </div>
             ))
           )}
