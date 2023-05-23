@@ -1,4 +1,4 @@
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import {
     Meta,
     Links,
@@ -55,15 +55,27 @@ export function links() {
 // En primer lugar hay que exportar la función App
 export default function App() {
 
-    const [carrito, setCarrito] = useState([])
+    // al querer obtener de localstorage me va a dar problemas ya que este se ejecuta del lado del cliente. para que no ocurra hay que colocar typeof window.
+    //esto es que va a comprobar si en LocalStorage hay algo y si no va a retornar un array vacio. si no estuviera esto, si no encontrara nada el getitem devolveria un null
+
+    const carritoLS = typeof window !== "undefined" && JSON.parse(localStorage.getItem("carrito")) || [] 
+    const [carrito, setCarrito] = useState(carritoLS)
+
+    useEffect(() => {
+        if (typeof window !== "undefined") {
+            localStorage.setItem("carrito", JSON.stringify(carrito))
+        }
+
+    }, [carrito])
+
 
     const agregarCarrito = guitarra => {
         // va a iterar sobre los elementos que hay en el carrito
         // retorna un booleando, va a iterar por sobre todas las guitarras para ver si al menos un elemento del arreglo cumpla esa condición, va a verificiar si una guitarra con ese id existe.
-        if(carrito.some(guitarraState => guitarraState.id === guitarra.id)){
+        if (carrito.some(guitarraState => guitarraState.id === guitarra.id)) {
             //Iterar sobre el arreglo, e identificar el elemento duplicado
             const carritoActualizado = carrito.map(guitarraState => {
-                if(guitarraState.id === guitarra.id){
+                if (guitarraState.id === guitarra.id) {
                     //Reescribir la cantidad
                     guitarraState.cantidad = guitarra.cantidad
                 }
@@ -72,7 +84,7 @@ export default function App() {
             // Añadir al carrito
             setCarrito(carritoActualizado)
 
-        } else{
+        } else {
             // Registro nuevo, agregar al carrito
             setCarrito([...carrito, guitarra])
         }
@@ -80,7 +92,7 @@ export default function App() {
 
     const actualizarCantidad = guitarra => {
         const carritoActualizado = carrito.map(guitarraState => {
-            if(guitarraState.id === guitarra.id){
+            if (guitarraState.id === guitarra.id) {
                 guitarraState.cantidad = guitarra.cantidad
             }
             return guitarraState
@@ -95,8 +107,8 @@ export default function App() {
 
     return (
         <Document>
-            <Outlet 
-            // Este es el context para que la info este global, siempre se pasa un objeto, se puede pasar cualquier información
+            <Outlet
+                // Este es el context para que la info este global, siempre se pasa un objeto, se puede pasar cualquier información
                 context={{
                     agregarCarrito,
                     carrito,

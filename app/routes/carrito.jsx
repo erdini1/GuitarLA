@@ -46,8 +46,8 @@ const Carrito = () => {
         <div className="carrito">
           <h2>Articulos</h2>
 
-          {carrito.length === 0 ? "Empieza agregando productos" : (
-            carrito.map(producto => (
+          {carrito?.length === 0 ? "Empieza agregando productos" : (
+            carrito?.map(producto => (
               <div key={producto.id} className="producto">
                 <div>
                   <img src={producto.imagen} alt={`Imagen del producto ${producto.nombre}`} />
