@@ -73,3 +73,7 @@
 	cursor: pointer;
 	background-color: var(--primary);
 }
+
+.alerta{
+	font-family: var(--fuente-principal);
+}

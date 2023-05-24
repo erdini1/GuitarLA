@@ -1,6 +1,8 @@
 import { useState } from "react"
 import { useLoaderData, useOutletContext } from "@remix-run/react"
 import { getGuitarra } from "~/models/guitarras.server"
+//Importo las dependendencias de antd para la alerta
+import { notification, Space } from 'antd';
 
 export async function loader({ params }) {
 
@@ -27,7 +29,7 @@ export function meta({ data }) {
 
 const Guitarra = () => {
 
-  const {agregarCarrito} = useOutletContext()
+  const { agregarCarrito } = useOutletContext()
 
   // no se pueden usar state en las funciones de arriba
   const [cantidad, setCantidad] = useState(0)
@@ -36,7 +38,7 @@ const Guitarra = () => {
 
   const handleSubmit = e => {
     e.preventDefault()
-    if(cantidad < 1){
+    if (cantidad < 1) {
       alert("Debe seleccionar una cantidad")
       return
     }
@@ -50,7 +52,18 @@ const Guitarra = () => {
     }
 
     agregarCarrito(guitarraSeleccionada)
+  }
 
+  //Configuraciones para utilizar la alerta de "antd"
+  const [api, contextHolder] = notification.useNotification();
+  const openNotificationWithIcon = (type) => {
+    api[type]({
+      message: 'Agregado al carrito',
+      description:
+        'El producto fue agregado con exito al carrito',
+      duration: 4,
+      className: "alerta"
+    });
   }
 
   return (
@@ -82,14 +95,18 @@ const Guitarra = () => {
             <option value="5">5</option>
           </select>
 
-          <input
-            type="submit"
-            value="Añadir al carrito"
-          />
-
+          {/* Llamo al componente de antd, cuando se haga click va a ocurrir la notificación solo si la cantidad es mayor a 0 */}
+          {contextHolder}
+          <Space>
+            <input
+              onClick={cantidad > 0 ? () => openNotificationWithIcon('success') : null}
+              type="submit"
+              value="Añadir al carrito"
+            />
+          </Space>
         </form>
       </div>
-    </div>
+    </div >
   )
 }
 
